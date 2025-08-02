@@ -24,8 +24,9 @@ genai.configure(api_key=api_key)
 # --------------------------
 if "chat_session" not in st.session_state:
     model = genai.GenerativeModel(
-        model_name="gemini-1.5-flash",  # Or 1.5-pro / 2.5-pro
+        model_name="gemini-2.5-flash",  # Or 1.5-pro / 2.5-pro
         generation_config={"temperature": 0.7},
+        request_options={"timeout": 600}
     )
     st.session_state.chat_session = model.start_chat(history=[])
 
@@ -56,3 +57,4 @@ if user_input:
         {"role": "user", "content": user_input},
         {"role": "model", "content": gemini_response}
     ])
+
